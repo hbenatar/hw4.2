@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Patua+One&display=swap');
+
+body {
+    margin: 50px 50px 50px 50px;
+    background-color: #f8deb5;
+    font-family: 'Patua One', cursive;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Bungee Spice', cursive;
+    font-size: 50px;
+}
+
+h2 {
+    text-align: center;
+    color: #da5019;
+    font-family: 'Patua One', cursive;
+    font-size: 30px;
+}
+
+table {  
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+    
+}
+
+td {
+    padding: 10px 20px; 
+}
+
+tr {
+    border-top: 1px solid #da5019; 
+    border-bottom: 1px solid #da5019;  
+}
+
+.right {
+    text-align: right;
+}
+
+.total {
+    color: #da5019;
+}
+
+.hidden {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}

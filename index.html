@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+  <title> Joe's Hotdogs</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+ <h1>Joe's Hotdog Stand</h1>
+
+ <div>
+  <h2>PlACE YOUR ORDER:</h2>
+  <form name="order" >
+    <table>
+      <tr>
+        <td>Hotdogs</td>
+        <td class="right" id="hotdogprice">$4.25</td>
+        <td> 
+          <select id="hotdogcount" name="hotdogcount">
+            <option value="" selected disabled hidden>Quantity</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>French Fries</td>
+        <td class="right" id="friesprice">$2.60</td>
+        <td>
+          <select id="friescount" name="friescount">
+            <option value="" selected disabled hidden>Quantity</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Drinks</td>
+        <td class="right" id="drinkprice">$1.50</td>
+        <td>
+          <select id="drinkscount" name="drinkscount">
+            <option value="" selected disabled hidden>Quantity</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <div class="center">
+      <br /><input type="button" id="submit" value="Order!">
+    </div>
+    </form>
+  </div>
+
+
+  <div id="output" style="display:none">
+    <h2>YOUR RECEIPT:</h2>
+    <table>
+      <tr>
+        <td>Hotdogs</td>
+        <td class="right" id="hotdogs">0</td>
+      </tr>
+      <tr>
+        <td>French Fries</td>
+        <td class="right" id="fries">0</td>
+      </tr>
+      <tr>
+        <td>Drinks</td>
+        <td class="right" id="drinks">0</td>
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td class="right" id="subtotal">0</td>
+      </tr>
+      <tr>
+        <td>Joe's Special Discount</td>
+        <td class="right" id="discount">0</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td class="right" id="tax">0</td>
+      </tr>
+      <tr class="total">
+        <td>Total</td>
+        <td class="right" id="total">0</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+
+    var button = document.getElementById("submit");
+    button.addEventListener("click", placeOrder); 
+
+    function placeOrder() {
+      // validate form
+      if (document.order.hotdogcount.value == "") {
+        alert("Must enter a quantity for hotdogs"); 
+        return false;
+      } else if (document.order.friescount.value == "") {
+        alert("Must enter a quantity for fries"); 
+        return false;
+      } else if (document.order.drinkscount.value == "") {
+        alert("Must enter a quantity for drinks"); 
+        return false;
+      }
+
+      var hotdogs = parseInt(document.getElementById("hotdogcount").value);
+      var fries = parseInt(document.getElementById("friescount").value);
+      var drinks = parseInt(document.getElementById("drinkscount").value);
+
+      var subtotal = 4.25 * hotdogs + 2.60 * fries + 1.5 * drinks;
+
+      var discount = 0.00;
+      if (subtotal >= 20)
+        discount = subtotal * 0.10;
+
+      var tax = (subtotal - discount) * 0.0625;
+      var total = subtotal - discount + tax;
+
+      document.getElementById("hotdogs").innerHTML = hotdogs;
+      document.getElementById("fries").innerHTML = fries;
+      document.getElementById("drinks").innerHTML = drinks;
+      document.getElementById("subtotal").innerHTML = "$" + subtotal.toFixed(2);
+      document.getElementById("discount").innerHTML = "-$" + discount.toFixed(2);
+      document.getElementById("tax").innerHTML = "$" + tax.toFixed(2);
+      document.getElementById("total").innerHTML = "$" + total.toFixed(2);
+    
+      document.getElementById("output").style.display = "block";
+    }
+  </script>
+</body>
+
+</html>
